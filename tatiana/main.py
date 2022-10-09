@@ -1,5 +1,4 @@
-from world import World
-from entity import Entity
+from engine import World, Entity
 from os.path import abspath
 
 w = World(800,600,'running',Entity('base',(0,0),abspath('assets/base.png')))

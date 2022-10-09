@@ -1,6 +1,6 @@
 from typing import Any, Dict, Tuple
 from typing_extensions import Self
-import components
+from . import components
 
 class Entity:
     name: str

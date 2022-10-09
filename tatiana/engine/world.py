@@ -2,8 +2,8 @@ from typing import Any, Dict, List
 from typing_extensions import Self
 from pygame import Surface
 import pygame
-import entity
-from systems import RenderSystem
+from . import entity
+from .systems import RenderSystem
 
 class World(object):
     screen: Surface

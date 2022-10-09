@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 import pygame
-from components import SpriteComponent, TransformComponent
+from ..components import SpriteComponent, TransformComponent
 
 def RenderSystem(
     screen: pygame.Surface,
