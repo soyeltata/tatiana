@@ -1,5 +1,6 @@
 from typing import Any, Dict, Tuple
 from typing_extensions import Self
+import pygame
 from . import components
 
 class Entity:
@@ -22,14 +23,19 @@ class Entity:
             self.add_component(components.SpriteComponent(sprite_path))
 
         for component in ocomponents:
-            self.set_component(component)
+            self.add_component(component)
 
-    def add_component(self, component, *args):
+    def add_component(self: Self, component, *args):
         key = type(component)
         self.components[key] = component
 
-    def get_component(self, clazz):
+    def get_component(self: Self, clazz):
         return self.components[clazz]
 
-    def has_component(self, clazz):
+    def has_component(self: Self, clazz):
         return self.get_component(clazz) is not None
+
+    def change_sprite(self: Self, path: str) -> None:
+        if self.has_component(components.SpriteComponent):
+            self.components[components.SpriteComponent].image = pygame.image.load(path)
+            return

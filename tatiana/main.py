@@ -1,6 +1,9 @@
 from engine import World, Entity
+from movement import MovementSystem
 from os.path import abspath
 
-w = World(800,600,'running',Entity('base',(0,0),abspath('assets/base.png')))
-w.set_color(0xff, 0xff, 0xff)
+player = Entity('mainobj', (0, 0), abspath('assets/main.png'))
+
+w = World(800,600,'running', player)
+w.add_system('movement', MovementSystem)
 w.run()

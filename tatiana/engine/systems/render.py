@@ -1,12 +1,11 @@
-from typing import Any, Dict, List
 import pygame
 from ..components import SpriteComponent, TransformComponent
 
-def RenderSystem(
+def RenderSystem (
     screen: pygame.Surface,
     world
 ) -> None:
-    pygame.display.flip()
+    screen.fill(world.bgcolor)
     for entity in world.get_entities():
         screen.blit(entity.get_component(SpriteComponent).image,
             (
@@ -14,3 +13,4 @@ def RenderSystem(
                 entity.get_component(TransformComponent).Y + ((world.height/2)-(entity.get_component(SpriteComponent).image.get_height()/2))
             )
         )
+    pygame.display.flip()

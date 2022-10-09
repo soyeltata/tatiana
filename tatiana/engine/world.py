@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 from typing_extensions import Self
 from pygame import Surface
 import pygame
@@ -9,6 +9,7 @@ class World(object):
     screen: Surface
     width:int
     height:int
+    bgcolor: Tuple[int]
     entities: Dict[str, entity.Entity]
     systems: Dict[str, Any]
 
@@ -23,8 +24,10 @@ class World(object):
         self.systems={}
         self.width=width
         self.height=height
+        self.bgcolor=(0xff,0xff,0xff)
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
+        self.screen.fill(self.bgcolor)
         pygame.display.set_caption(title)
 
         for _e in entities:
@@ -67,7 +70,7 @@ class World(object):
         green: int,
         blue: int
     ) -> None:
-        self.screen.fill((red, green, blue))
+        self.bgcolor = (red, green, blue)
 
     def run(
         self: Self
