@@ -6,14 +6,18 @@ from pygame import Surface, image
 class SpriteComponent:
     image: Surface
     rotation: float = 0
-    scaling: float = 0
+    scalingX: float = 1
+    scalingY: float = 1
 
     def __init__(
         self: Self,
         path: str,
         rotation: float=0,
-        scaling: float=0
+        scalingX: float=1,
+        scalingY: float=1,
+
     ) -> Self:
         self.image = image.load(path)
         self.rotation = rotation
-        self.scaling = scaling
+        self.scalingX = scalingX
+        self.scalingY = scalingY

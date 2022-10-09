@@ -1,7 +1,7 @@
 import keyboard
 import pygame
 from engine import World
-from engine.components import TransformComponent
+from engine.components import TransformComponent, SpriteComponent
 
 def MovementSystem (
     _,
@@ -21,6 +21,12 @@ def MovementSystem (
         
         if keyboard.is_pressed('s'):
             player.get_component(TransformComponent).Y += 1
-    
+        
+        if keyboard.is_pressed('l'):
+            player.get_component(SpriteComponent).rotation += 0.25
+
+        if keyboard.is_pressed('ñ'):
+            player.get_component(SpriteComponent).rotation -= 0.25
+
     except Exception:
         pass
