@@ -13,7 +13,16 @@ sc = player.get_component(SpriteComponent)
 pos.X, pos.Y = pos.X-(sc.width/2), pos.Y-(sc.height/2)
 sc.scalingX, sc.scalingY = 5, 5
 
-sc.add_images(False, p('bbox_down1'), p('bbox_down2'), p('bbox_lateral_idle'), p('bbox_lateral1'), p('bbox_lateral2'), p('bbox_up_idle'), p('bbox_up1'), p('bbox_up2'))
+sc.add_images(False,
+    p('bbox_down1'),
+    p('bbox_down2'),
+    p('bbox_lateral_idle'),
+    p('bbox_lateral1'),
+    p('bbox_lateral2'),
+    p('bbox_up_idle'),
+    p('bbox_up1'),
+    p('bbox_up2')
+)
 
 bg = Entity('bg', (-RESX/2, -RESY/2), p('bg'))
 sc2 = bg.get_component(SpriteComponent)
