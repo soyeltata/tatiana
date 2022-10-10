@@ -6,20 +6,23 @@ def RenderSystem (
     world
 ) -> None:
     screen.fill(world.bgcolor)
+    cmr = world.get_entity('camera')
     for entity in world.get_entities():
-        img = entity.get_component(SpriteComponent).image
+        sc = entity.get_component(SpriteComponent)
+        img = pygame.transform.flip(sc.current_image, sc.scalingX<0, sc.scalingY<0)
+
         screen.blit(
             pygame.transform.rotate(pygame.transform.scale(
                 img,
                 (
-                    img.get_width()*entity.get_component(SpriteComponent).scalingX,
-                    img.get_height()*entity.get_component(SpriteComponent).scalingY
+                    img.get_width()*abs(sc.scalingX),
+                    img.get_height()*abs(sc.scalingY)
                 )),
-                entity.get_component(SpriteComponent).rotation
+                sc.rotation
             ),
             (
-                entity.get_component(TransformComponent).X + ((world.width/2)-(img.get_width()/2)),
-                entity.get_component(TransformComponent).Y + ((world.height/2)-(img.get_height()/2))
+                entity.get_component(TransformComponent).X + ((world.width/2)-(img.get_width()/2)) - cmr.X,
+                entity.get_component(TransformComponent).Y + ((world.height/2)-(img.get_height()/2)) - cmr.Y
             )
         )
     pygame.display.flip()

@@ -1,11 +1,11 @@
 from typing import Any, Dict, Tuple
 from typing_extensions import Self
-import pygame
 from . import components
 
 class Entity:
     name: str
     components: Dict[Any, Any]
+    properties: Dict[str, Any]
 
     def __init__(
         self: Self,
@@ -37,5 +37,10 @@ class Entity:
 
     def change_sprite(self: Self, path: str) -> None:
         if self.has_component(components.SpriteComponent):
-            self.components[components.SpriteComponent].image = pygame.image.load(path)
-            return
+            self.components[components.SpriteComponent].change_sprite(1, path)
+
+    def set_property(self: Self, name: str, value: Any) -> None:
+        self.properties[name] = value
+
+    def get_property(self: Self, name: str) -> None:
+        return self.properties[name]

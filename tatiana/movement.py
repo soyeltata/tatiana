@@ -1,5 +1,4 @@
 import keyboard
-import pygame
 from engine import World
 from engine.components import TransformComponent, SpriteComponent
 
@@ -8,6 +7,7 @@ def MovementSystem (
     environment: World
 ) -> None:
     player = environment.get_entity('mainobj')
+    camera = environment.get_entity('camera')
 
     try:
         if keyboard.is_pressed('a'):
@@ -27,6 +27,18 @@ def MovementSystem (
 
         if keyboard.is_pressed('ñ'):
             player.get_component(SpriteComponent).rotation -= 0.25
+
+        if keyboard.is_pressed('g'):
+            camera.X -= 1
+
+        if keyboard.is_pressed('j'):
+            camera.X += 1
+
+        if keyboard.is_pressed('h'):
+            camera.Y += 1
+
+        if keyboard.is_pressed('y'):
+            camera.Y -= 1
 
     except Exception:
         pass

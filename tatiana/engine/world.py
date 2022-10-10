@@ -4,6 +4,7 @@ from pygame import Surface
 import pygame
 from . import entity
 from .systems import RenderSystem
+from .entities import Camera
 
 class World(object):
     screen: Surface
@@ -25,6 +26,7 @@ class World(object):
         self.width=width
         self.height=height
         self.bgcolor=(0xff,0xff,0xff)
+        self.entities['camera'] = Camera(0, 0)
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         self.screen.fill(self.bgcolor)
@@ -62,7 +64,12 @@ class World(object):
     def get_entities(
         self: Self
     ) -> List[entity.Entity]:
-        return list(self.entities.values())
+        res = []
+        for ent in self.entities.values():
+            if ent is self.entities['camera']:
+                continue
+            res.append(ent)
+        return res
 
     def set_color(
         self: Self,
@@ -78,7 +85,10 @@ class World(object):
         status = True
         while (status):
             for s in self.systems.keys():
+                if s == 'render_system':
+                    continue
                 self.call_system(s)
+            self.call_system('render_system')
 
             for i in pygame.event.get():
                 if i.type == pygame.QUIT:
