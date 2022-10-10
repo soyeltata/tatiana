@@ -16,6 +16,7 @@ class Entity:
     ) -> Self:
         self.name = name
         self.components = {}
+        self.properties = {}
 
         self.add_component(components.TransformComponent(*position))
 
@@ -43,4 +44,7 @@ class Entity:
         self.properties[name] = value
 
     def get_property(self: Self, name: str) -> None:
-        return self.properties[name]
+        try:
+            return self.properties[name]
+        except Exception:
+            return None

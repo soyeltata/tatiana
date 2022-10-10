@@ -10,6 +10,7 @@ class SpriteComponent:
     rotation: float = 0
     scalingX: float = 1
     scalingY: float = 1
+    layer: int = 0
 
     def __init__(
         self: Self,
@@ -17,13 +18,14 @@ class SpriteComponent:
         rotation: float=0,
         scalingX: float=1,
         scalingY: float=1,
-
+        layer: int=0
     ) -> Self:
         self.images = []
         self.add_image(path)
         self.rotation = rotation
         self.scalingX = scalingX
         self.scalingY = scalingY
+        self.layer    = layer
 
     def add_image(
         self: Self,
@@ -68,19 +70,19 @@ class SpriteComponent:
         self: Self,
         imgnum: int
     ) -> None:
-        self.current = imgnum+1
+        self.current = imgnum-1
 
     def forward(
         self: Self,
         n: int,
     ) -> None:
-        self.current = min(self.current+n, len(self.images)-1)
+        self.current = abs((self.current+n)%(len(self.images)-1))
 
     def backward(
         self: Self,
         n: int,
     ) -> None:
-        self.current = max(0, self.current-n)
+        self.current = abs((self.current-n)%(len(self.images)-1))
 
     def change_sprite(
         self: Self,
@@ -92,3 +94,11 @@ class SpriteComponent:
     @property
     def current_image(self: Self) -> None:
         return self.images[self.current]
+
+    @property
+    def height(self: Self) -> None:
+        return self.current_image.get_height()
+
+    @property
+    def width(self: Self) -> None:
+        return self.current_image.get_width()

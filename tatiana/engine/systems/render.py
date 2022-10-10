@@ -7,7 +7,7 @@ def RenderSystem (
 ) -> None:
     screen.fill(world.bgcolor)
     cmr = world.get_entity('camera')
-    for entity in world.get_entities():
+    for entity in sorted(world.get_entities(), key=(lambda e: e.get_component(SpriteComponent).layer)):
         sc = entity.get_component(SpriteComponent)
         img = pygame.transform.flip(sc.current_image, sc.scalingX<0, sc.scalingY<0)
 

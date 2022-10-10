@@ -1,44 +1,54 @@
 import keyboard
+import time
 from engine import World
 from engine.components import TransformComponent, SpriteComponent
+
+SPEED = 5   # player speed
+ANSPD = .5  # animation speed
 
 def MovementSystem (
     _,
     environment: World
 ) -> None:
     player = environment.get_entity('mainobj')
+    position = player.get_component(TransformComponent)
+    sprite = player.get_component(SpriteComponent)
     camera = environment.get_entity('camera')
 
     try:
         if keyboard.is_pressed('a'):
-            player.get_component(TransformComponent).X -= 1
+            ts = player.get_property('timestamp')
+            if ts:
+                if (time.time() - ts) > ANSPD:
+                    player.set_property('timestamp', time.time())
+                    print(sprite.current)
+                    sprite.switch_to((sprite.current+1) % 3 + 2)
+            else:
+                player.set_property('timestamp', time.time())
+
+            position.X -= SPEED
+            camera.X -= SPEED
         
-        if keyboard.is_pressed('d'):
-            player.get_component(TransformComponent).X += 1
+        elif keyboard.is_pressed('d'):
+            position.X += SPEED
+            camera.X += SPEED
         
-        if keyboard.is_pressed('w'):
-            player.get_component(TransformComponent).Y -= 1
+        elif keyboard.is_pressed('w'):
+            position.Y -= SPEED
+            camera.Y -= SPEED
         
-        if keyboard.is_pressed('s'):
-            player.get_component(TransformComponent).Y += 1
-        
-        if keyboard.is_pressed('l'):
-            player.get_component(SpriteComponent).rotation += 0.25
+        elif keyboard.is_pressed('s'):
+            position.Y += SPEED
+            camera.Y += SPEED
 
-        if keyboard.is_pressed('ñ'):
-            player.get_component(SpriteComponent).rotation -= 0.25
+        else:
+            ts = player.get_property('timestamp')
+            if ts:
+                if (time.time() - ts) > ANSPD:
+                    player.set_property('timestamp', time.time())
+                    sprite.switch_to(1)
+            else:
+                player.set_property('timestamp', time.time())
 
-        if keyboard.is_pressed('g'):
-            camera.X -= 1
-
-        if keyboard.is_pressed('j'):
-            camera.X += 1
-
-        if keyboard.is_pressed('h'):
-            camera.Y += 1
-
-        if keyboard.is_pressed('y'):
-            camera.Y -= 1
-
-    except Exception:
-        pass
+    except Exception as e:
+        print(e)
