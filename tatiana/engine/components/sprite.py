@@ -2,7 +2,7 @@ from dataclasses import dataclass as component
 from typing import List, Set
 from typing_extensions import Self
 from pygame import Surface, image
-from .animation import AnimationController
+from ..structures.animation import AnimationController
 
 @component
 class SpriteComponent:

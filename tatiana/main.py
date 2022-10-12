@@ -1,6 +1,7 @@
 from keyboard import is_pressed
 from engine import World, Entity
-from engine.components import SpriteComponent, TransformComponent, AnimationController
+from engine.components import SpriteComponent, TransformComponent
+from engine.structures import AnimationController
 from movement import MovementSystem
 from os.path import abspath
 
@@ -11,7 +12,6 @@ p = lambda x: abspath(f'assets/{x}.png')
 player = Entity('mainobj', (0, 0), p('bbox_down_idle'))
 pos = player.get_component(TransformComponent)
 sc = player.get_component(SpriteComponent)
-pos.X, pos.Y = pos.X-(sc.width/2), pos.Y-(sc.height/2)
 sc.scalingX, sc.scalingY = 5, 5
 
 sc.add_images(False,
