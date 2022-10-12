@@ -8,8 +8,14 @@ def RenderSystem (
     screen.fill(world.bgcolor)
     cmr = world.get_entity('camera')
     for entity in sorted(world.get_entities(), key=(lambda e: e.get_component(SpriteComponent).layer)):
+        img = None
         sc = entity.get_component(SpriteComponent)
-        img = pygame.transform.flip(sc.current_image, sc.scalingX<0, sc.scalingY<0)
+        active = list(filter(lambda anim: anim.condition(entity), sc.animations))
+        if not len(active):
+            img = pygame.transform.flip(sc.current_image, sc.scalingX<0, sc.scalingY<0)
+        else:
+            img = pygame.transform.flip(sc.images[active[0].current], sc.scalingX<0, sc.scalingY<0)
+            active[0].update()
 
         screen.blit(
             pygame.transform.rotate(pygame.transform.scale(

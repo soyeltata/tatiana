@@ -1,11 +1,13 @@
 from dataclasses import dataclass as component
-from typing import List
+from typing import List, Set
 from typing_extensions import Self
 from pygame import Surface, image
+from .animation import AnimationController
 
 @component
 class SpriteComponent:
     images: List[Surface]
+    animations: List[AnimationController]
     current: int = 0
     rotation: float = 0
     scalingX: float = 1
@@ -21,6 +23,7 @@ class SpriteComponent:
         layer: int=0
     ) -> Self:
         self.images = []
+        self.animations = []
         self.add_image(path)
         self.rotation = rotation
         self.scalingX = scalingX
@@ -46,6 +49,12 @@ class SpriteComponent:
         for path in paths:
             self.add_image(path, move_into)
         return
+
+    def add_animation(
+        self: Self,
+        animation: AnimationController
+    ) -> None:
+        self.animations.append(animation)
 
     def del_image(
         self: Self,
