@@ -13,22 +13,27 @@ class World(object):
     bgcolor: Tuple[int]
     entities: Dict[str, entity.Entity]
     systems: Dict[str, Any]
+    fpslimit: float
+    __clock: pygame.time.Clock
 
     def __init__(
         self: Self,
         width:  int=800,
         height: int=600,
         title: str="running...",
+        mode: int=0,
         *entities
     ) -> Self:
         self.entities={}
         self.systems={}
+        self.__clock=pygame.time.Clock()
+        self.fpslimit=0
         self.width=width
         self.height=height
         self.bgcolor=(0xff,0xff,0xff)
         self.entities['camera'] = Camera(0, 0)
         pygame.init()
-        self.screen = pygame.display.set_mode((width, height))
+        self.screen = pygame.display.set_mode((width, height), mode)
         self.screen.fill(self.bgcolor)
         pygame.display.set_caption(title)
 
@@ -79,6 +84,25 @@ class World(object):
     ) -> None:
         self.bgcolor = (red, green, blue)
 
+    def set_target_fps(
+        self: Self,
+        fpslimit: float=0
+    ) -> None:
+        self.fpslimit = fpslimit
+
+    @property
+    def actual_fps(self: Self) -> float:
+        return self.__clock.get_fps()
+
+    def resize_world(
+        self: Self,
+        width: int,
+        height: int
+    ) -> None:
+        self.height = height
+        self.width = width
+        self.screen = pygame.transform.scale(self.screen, (width, height))
+
     def run(
         self: Self
     ) -> None:
@@ -93,4 +117,7 @@ class World(object):
             for i in pygame.event.get():
                 if i.type == pygame.QUIT:
                     status = False
+            
+            if self.fpslimit:
+                self.__clock.tick(self.fpslimit)
         pygame.quit()
