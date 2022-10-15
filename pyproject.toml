@@ -21,3 +21,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/soyeltata/tatiana"
 "Bug Tracker" = "https://github.com/soyeltata/tatiana/issues"
+
+[tool.setuptools]
+packages=["tatiana"]
