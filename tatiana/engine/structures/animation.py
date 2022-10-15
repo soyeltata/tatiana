@@ -11,24 +11,33 @@ class AnimationController:
     condition: Any
     current: int
     timestamp: float
+    preference: int
 
     def __init__(
         self: Self,
         begin: int,
         end: int,
-        speed: float
+        speed: float,
+        preference: int=0
     ) -> None:
         self.begin = begin-1
         self.current = begin-1
         self.end = end-1
         self.speed = speed
         self.timestamp = 0
+        self.preference = preference
 
     def set_condition(
         self: Self,
         condition: Any
     ) -> None:
         self.condition = condition
+
+    def set_preference(
+        self: Self,
+        pref: int
+    ) -> None:
+        self.preference = pref
 
     def AnimCondition(
         self: Self,

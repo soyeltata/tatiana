@@ -1,12 +1,13 @@
 from keyboard import is_pressed
+import pygame
 from engine import World, Entity
 from engine.components import SpriteComponent, TransformComponent
 from engine.structures import AnimationController
 from movement import MovementSystem
 from os.path import abspath
 
-RESX = 800
-RESY = 600
+RESX = 1280
+RESY = 720
 p = lambda x: abspath(f'assets/{x}.png')
 
 player = Entity('mainobj', (0, 0), p('bbox_down_idle'))
@@ -46,7 +47,7 @@ sc2 = bg.get_component(SpriteComponent)
 sc2.scalingX, sc2.scalingY = 50, 50
 sc2.layer = -1
 
-w = World(RESX,RESY,'running')
+w = World(RESX,RESY,'running',pygame.FULLSCREEN)
 w.add_entity(player)
 w.add_entity(bg)
 w.add_system('movement', MovementSystem)

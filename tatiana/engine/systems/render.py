@@ -10,7 +10,7 @@ def RenderSystem (
     for entity in sorted(world.get_entities(), key=(lambda e: e.get_component(SpriteComponent).layer)):
         img = None
         sc = entity.get_component(SpriteComponent)
-        active = list(filter(lambda anim: anim.condition(entity), sc.animations))
+        active = list(sorted(list(filter(lambda anim: anim.condition(entity), sc.animations)), key=(lambda a: a.preference), reverse=True))
         if not len(active):
             img = pygame.transform.flip(sc.current_image, sc.scalingX<0, sc.scalingY<0)
         else:
