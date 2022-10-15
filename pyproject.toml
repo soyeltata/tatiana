@@ -11,10 +11,7 @@ authors = [
 description = "Un pobre intento de hacer un pequeño motor de videojuegos utilizando Python (≥ 3.10) y pygame"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [
-    "pygame",
-    'keyboard',
-]
+dependencies = ["pygame"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GPL-3.0 license",
