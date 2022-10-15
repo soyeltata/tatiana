@@ -133,6 +133,12 @@ Por ello, a continuación se muestra el plan de programación que se tiene pensa
 - [ ] Físicas realistas mediante el paquete [Pymunk](http://www.pymunk.org/).
 - [ ] Clases base para crear rectángulos, círculos, triángulos, texto...
 
+## demostración de las capacidades de **Tatiana**
+En general, es posible resumir el estado actual del proyecto con la siguiente imagen:
+<div align="center"><img src="./assets/demo-n1.gif"></div>
+
+Y es que en esta pequeña demostración se puede apreciar el manejo de imágenes, animaciones y el límite de **FPS** que es capaz de realizar el motor. Siendo muy poco, ilustra perfectamente el estado del proyecto y el hecho de que aún necesita tiempo de desarrollo.
+
 ## [licencia del proyecto](./LICENSE)
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
