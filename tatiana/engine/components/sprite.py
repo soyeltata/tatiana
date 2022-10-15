@@ -13,6 +13,7 @@ class SpriteComponent:
     scalingX: float = 1
     scalingY: float = 1
     layer: int = 0
+    opacity: int = 100
 
     def __init__(
         self: Self,
@@ -20,6 +21,7 @@ class SpriteComponent:
         rotation: float=0,
         scalingX: float=1,
         scalingY: float=1,
+        opacity: int=100,
         layer: int=0
     ) -> Self:
         self.images = []
@@ -28,6 +30,7 @@ class SpriteComponent:
         self.rotation = rotation
         self.scalingX = scalingX
         self.scalingY = scalingY
+        self.opacity  = opacity
         self.layer    = layer
 
     def add_image(

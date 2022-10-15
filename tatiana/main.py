@@ -14,6 +14,8 @@ player = Entity('mainobj', (0, 0), p('bbox_down_idle'))
 pos = player.get_component(TransformComponent)
 sc = player.get_component(SpriteComponent)
 sc.scalingX, sc.scalingY = 5, 5
+sc.layer = 1
+#sc.opacity = 50
 
 sc.add_images(False,
     p('bbox_down1'),

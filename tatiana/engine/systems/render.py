@@ -17,7 +17,7 @@ def RenderSystem (
             img = pygame.transform.flip(sc.images[active[0].current], sc.scalingX<0, sc.scalingY<0)
             active[0].update()
 
-        screen.blit(
+        renderimage = \
             pygame.transform.rotate(pygame.transform.scale(
                 img,
                 (
@@ -25,7 +25,11 @@ def RenderSystem (
                     img.get_height()*abs(sc.scalingY)
                 )),
                 sc.rotation
-            ),
+            )
+        renderimage.set_alpha(int(sc.opacity * (255/100)))
+
+        screen.blit(
+            renderimage,
             (
                 entity.get_component(TransformComponent).X + ((world.width/2)-(img.get_width()/2)) - cmr.X,
                 entity.get_component(TransformComponent).Y + ((world.height/2)-(img.get_height()/2)) - cmr.Y
