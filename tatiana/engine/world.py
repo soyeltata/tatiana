@@ -15,6 +15,7 @@ class World(object):
     systems: Dict[str, Any]
     fpslimit: float
     __clock: pygame.time.Clock
+    __lasttick: int
 
     def __init__(
         self: Self,
@@ -27,6 +28,7 @@ class World(object):
         self.entities={}
         self.systems={}
         self.__clock=pygame.time.Clock()
+        self.__lasttick=pygame.time.get_ticks()
         self.fpslimit=0
         self.width=width
         self.height=height
@@ -90,10 +92,6 @@ class World(object):
     ) -> None:
         self.fpslimit = fpslimit
 
-    @property
-    def actual_fps(self: Self) -> float:
-        return self.__clock.get_fps()
-
     def resize_world(
         self: Self,
         width: int,
@@ -102,6 +100,14 @@ class World(object):
         self.height = height
         self.width = width
         self.screen = pygame.transform.scale(self.screen, (width, height))
+
+    @property
+    def actual_fps(self: Self) -> float:
+        return self.__clock.get_fps()
+
+    @property
+    def delta_time(self: Self) -> float:
+        return (pygame.time.get_ticks() - self.__lasttick) / 1000
 
     def run(
         self: Self
@@ -118,6 +124,7 @@ class World(object):
                 if i.type == pygame.QUIT:
                     status = False
             
+            self.__lasttick=pygame.time.get_ticks()
             if self.fpslimit:
                 self.__clock.tick(self.fpslimit)
         pygame.quit()
