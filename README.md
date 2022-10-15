@@ -128,6 +128,8 @@ Por ello, a continuación se muestra el plan de programación que se tiene pensa
 - [X] Dibujado de imágenes y sistemas para el escalado, la rotación y la opacidad de las mismas.
 - [X] Animaciones funcionales y sistemas para manejar varias a la vez.
 - [X] Sistemas para la limitación de FPS en la ejecución.
+- [ ] Refactorizar el proyecto según la guía de estilo [PEP 8](https://peps.python.org/pep-0008/).
+- [ ] Escribir la documentación del proyecto mediante la herramienta [pdoc](https://pdoc.dev/).
 - [ ] Movimiento fluido mediante interpolaciones.
 - [ ] Importación de *"atlas"* y *"spritesheets"*.
 - [ ] Físicas realistas mediante el paquete [Pymunk](http://www.pymunk.org/).
