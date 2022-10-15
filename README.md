@@ -54,6 +54,71 @@ Aquí, en esta pequeña sección podrá encontrar varios ejemplos útiles hechos
 #### dibujar una imagen en pantalla
 Para este primer ejemplo, necesitará de una imagen cualquiera de formato **PNG** a la que nombraremos como `image.png` dentro del código. Este archivo será nombrado una única vez en el código en la declaración de la constante `SPRITE`, por lo que modifíquela si el nombre de su imagen es otro:
 ```python
+from tatiana import World, Entity
+from os.path import abspath
+
+RESX = 800
+RESY = 600
+SPRITE = 'image.png'
+
+player = Entity('mainobj', (0, 0), abspath(SPRITE))
+
+w = World(RESX,RESY,'running')
+w.add_entity(player)
+w.set_target_fps(30)
+w.run()
+```
+
+#### movimiento 2D básico
+Ahora, para este segundo ejemplo nos basaremos en el extracto de código anterior, salvo que crearemos un módulo llamado `movement.py` que contendrá el sistema de movimiento del personaje. El código de este módulo será el siguiente:
+```python
+import keyboard
+from tatiana import World
+from tatiana.components import TransformComponent, SpriteComponent
+
+SPEED = 5
+
+def MovementSystem (
+    _,
+    environment: World
+) -> None:
+    player = environment.get_entity('mainobj')
+    position = player.get_component(TransformComponent)
+    camera = environment.get_entity('camera')
+
+    try:
+        if keyboard.is_pressed('a'):
+            position.X -= SPEED
+        
+        elif keyboard.is_pressed('d'):
+            position.X += SPEED
+        
+        elif keyboard.is_pressed('w'):
+            position.Y -= SPEED
+        
+        elif keyboard.is_pressed('s'):
+            position.Y += SPEED
+
+    except Exception as e:
+        print(e)
+```
+La velocidad del personaje vendrá determinada por la variable `SPEED`, por lo que modifíquela para variar la velocidad del personaje. Para este segundo ejemplo necesitaremos tener instalado además el módulo `keyboard`, sin este no se ejecutará el programa. El código de el archivo principal será, de nuevo, el siguiente (con una modificación con respecto a el extracto anterior):
+```python
+from tatiana import World, Entity
+from movement import MovementSystem
+from os.path import abspath
+
+RESX = 800
+RESY = 600
+SPRITE = 'image.png'
+
+player = Entity('mainobj', (0, 0), abspath(SPRITE))
+
+w = World(RESX,RESY,'running')
+w.add_entity(player)
+w.add_system('movement', MovementSystem)
+w.set_target_fps(30)
+w.run()
 ```
 
 ## características por implementar
