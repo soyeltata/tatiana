@@ -1,8 +1,9 @@
 from dataclasses import dataclass as component
-from typing import List, Set
-from typing_extensions import Self
-from pygame import Surface, image
+from typing import List, Optional
+from pygame import image
+from pygame.surface import Surface
 from ..structures.animation import AnimationController
+
 
 @component
 class SpriteComponent:
@@ -16,26 +17,26 @@ class SpriteComponent:
     opacity: int = 100
 
     def __init__(
-        self: Self,
-        path: str=None,
-        rotation: float=0,
-        scalingX: float=1,
-        scalingY: float=1,
-        opacity: int=100,
-        layer: int=0
-    ) -> Self:
+        self,
+        path: Optional[str] = None,
+        rotation: float = 0,
+        scalingX: float = 1,
+        scalingY: float = 1,
+        opacity: int = 100,
+        layer: int = 0
+    ) -> None:
         self.images = []
         self.animations = []
         self.add_image(path)
         self.rotation = rotation
         self.scalingX = scalingX
         self.scalingY = scalingY
-        self.opacity  = opacity
-        self.layer    = layer
+        self.opacity = opacity
+        self.layer = layer
 
     def add_image(
-        self: Self,
-        path: str = None,
+        self,
+        path: Optional[str] = None,
         move_into: bool = True
     ) -> None:
         if path:
@@ -45,7 +46,7 @@ class SpriteComponent:
             return
 
     def add_images(
-        self: Self,
+        self,
         move_into: bool = True,
         *paths
     ) -> None:
@@ -54,13 +55,13 @@ class SpriteComponent:
         return
 
     def add_animation(
-        self: Self,
+        self,
         animation: AnimationController
     ) -> None:
         self.animations.append(animation)
 
     def del_image(
-        self: Self,
+        self,
         imgnum: int
     ) -> None:
         if (self.current+1) >= imgnum:
@@ -69,48 +70,50 @@ class SpriteComponent:
         return
 
     def del_images(
-        self: Self,
+        self,
         begin: int,
         end: int
     ) -> None:
-        d=end-begin
+        d = end - begin
         for _ in range(d):
             self.del_image(begin)
         return
 
-    def switch_to (
-        self: Self,
+    def switch_to(
+        self,
         imgnum: int
     ) -> None:
         self.current = imgnum-1
 
     def forward(
-        self: Self,
+        self,
         n: int,
     ) -> None:
-        self.current = abs((self.current+n)%(len(self.images)-1))
+        self.current = abs((self.current + n) % (len(self.images) - 1))
 
     def backward(
-        self: Self,
+        self,
         n: int,
     ) -> None:
-        self.current = abs((self.current-n)%(len(self.images)-1))
+        self.current = abs((self.current - n) % (len(self.images) - 1))
 
     def change_sprite(
-        self: Self,
-        index: int=1,
-        path: str=None
+        self,
+        index: int = 1,
+        path: Optional[str] = None
     ) -> None:
+        if not path:
+            return
         self.images[index-1] = image.load(path)
 
     @property
-    def current_image(self: Self) -> None:
+    def current_image(self) -> Surface:
         return self.images[self.current]
 
     @property
-    def height(self: Self) -> None:
+    def height(self) -> int:
         return self.current_image.get_height()
 
     @property
-    def width(self: Self) -> None:
+    def width(self) -> int:
         return self.current_image.get_width()

@@ -1,6 +1,6 @@
-from typing import Any, Dict, Tuple
-from typing_extensions import Self
+from typing import Any, Dict, Tuple, Optional
 from . import components
+
 
 class Entity:
     name: str
@@ -8,12 +8,12 @@ class Entity:
     properties: Dict[str, Any]
 
     def __init__(
-        self: Self,
+        self,
         name: str,
-        position: Tuple[float] = (0,0),
-        sprite_path: str       = None,
+        position: Tuple[float, float] = (.0, .0),
+        sprite_path: Optional[str] = None,
         *ocomponents
-    ) -> Self:
+    ) -> None:
         self.name = name
         self.components = {}
         self.properties = {}
@@ -26,24 +26,24 @@ class Entity:
         for component in ocomponents:
             self.add_component(component)
 
-    def add_component(self: Self, component, *args):
+    def add_component(self, component, *args):
         key = type(component)
         self.components[key] = component
 
-    def get_component(self: Self, clazz):
+    def get_component(self, clazz):
         return self.components[clazz]
 
-    def has_component(self: Self, clazz):
+    def has_component(self, clazz):
         return self.get_component(clazz) is not None
 
-    def change_sprite(self: Self, path: str) -> None:
+    def change_sprite(self, path: str) -> None:
         if self.has_component(components.SpriteComponent):
             self.components[components.SpriteComponent].change_sprite(1, path)
 
-    def set_property(self: Self, name: str, value: Any) -> None:
+    def set_property(self, name: str, value: Any) -> None:
         self.properties[name] = value
 
-    def get_property(self: Self, name: str) -> None:
+    def get_property(self, name: str) -> None:
         try:
             return self.properties[name]
         except Exception:

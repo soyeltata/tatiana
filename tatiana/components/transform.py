@@ -1,5 +1,6 @@
 from dataclasses import dataclass as component
 
+
 @component
 class TransformComponent:
     X: float = 0

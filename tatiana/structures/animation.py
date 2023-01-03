@@ -1,7 +1,7 @@
 from dataclasses import dataclass as component
 from time import time
 from typing import Any
-from typing_extensions import Self
+
 
 @component
 class AnimationController:
@@ -14,11 +14,11 @@ class AnimationController:
     preference: int
 
     def __init__(
-        self: Self,
+        self,
         begin: int,
         end: int,
         speed: float,
-        preference: int=0
+        preference: int = 0
     ) -> None:
         self.begin = begin-1
         self.current = begin-1
@@ -28,25 +28,27 @@ class AnimationController:
         self.preference = preference
 
     def set_condition(
-        self: Self,
+        self,
         condition: Any
     ) -> None:
         self.condition = condition
 
     def set_preference(
-        self: Self,
+        self,
         pref: int
     ) -> None:
         self.preference = pref
 
     def AnimCondition(
-        self: Self,
+        self,
         condition: Any
     ) -> Any:
         self.condition = condition
         return condition
 
-    def update(self: Self) -> None:
+    def update(self) -> None:
         if (time() - self.timestamp) > self.speed:
-            self.current = (self.current - self.begin + 1) % (self.end - self.begin + 1) + self.begin
+            self.current = (self.current - self.begin + 1) \
+                         % (self.end - self.begin + 1) \
+                         + self.begin
             self.timestamp = time()

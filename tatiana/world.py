@@ -1,39 +1,41 @@
-from typing import Any, Dict, List, Tuple
-from typing_extensions import Self
-from pygame import Surface
+from typing import Any, Dict, List, Tuple, Callable, Optional
+from pygame.surface import Surface
 import pygame
 from . import entity
+from . import Self
 from .systems import RenderSystem
 from .entities import Camera
 
+
 class World(object):
     screen: Surface
-    width:int
-    height:int
-    bgcolor: Tuple[int]
+    width: int
+    height: int
+    bgcolor: Tuple[int, int, int]
+    camera: Camera
     entities: Dict[str, entity.Entity]
-    systems: Dict[str, Any]
-    fpslimit: float
+    systems: Dict[str, Callable[[Surface, Self], None]]
+    fpslimit: Optional[int]
     __clock: pygame.time.Clock
     __lasttick: int
 
     def __init__(
-        self: Self,
-        width:  int=800,
-        height: int=600,
-        title: str="running...",
-        mode: int=0,
+        self,
+        width: int = 800,
+        height: int = 600,
+        title: str = "running...",
+        mode: int = 0,
         *entities
-    ) -> Self:
-        self.entities={}
-        self.systems={}
-        self.__clock=pygame.time.Clock()
-        self.__lasttick=pygame.time.get_ticks()
-        self.fpslimit=0
-        self.width=width
-        self.height=height
-        self.bgcolor=(0xff,0xff,0xff)
-        self.entities['camera'] = Camera(0, 0)
+    ) -> None:
+        self.entities = {}
+        self.systems = {}
+        self.__clock = pygame.time.Clock()
+        self.__lasttick = pygame.time.get_ticks()
+        self.fpslimit = None
+        self.width = width
+        self.height = height
+        self.bgcolor = (0xff, 0xff, 0xff)
+        self.camera = Camera(0, 0)
         pygame.init()
         self.screen = pygame.display.set_mode((width, height), mode)
         self.screen.fill(self.bgcolor)
@@ -44,42 +46,42 @@ class World(object):
         self.add_system('render_system', RenderSystem)
 
     def add_entity(
-        self: Self,
+        self,
         e: entity.Entity
     ) -> None:
         self.entities[e.name] = e
 
     def add_system(
-        self: Self,
+        self,
         name: str,
         s: Any
     ) -> None:
         self.systems[name] = s
 
     def call_system(
-        self: Self,
+        self,
         name: str
     ) -> None:
         self.systems[name](self.screen, self)
 
     def get_entity(
-        self: Self,
+        self,
         n: str
     ) -> entity.Entity:
         return self.entities[n]
 
     def get_entities(
-        self: Self
+        self
     ) -> List[entity.Entity]:
-        res = []
-        for ent in self.entities.values():
-            if ent is self.entities['camera']:
-                continue
-            res.append(ent)
-        return res
+        return list(self.entities.values())
+
+    def get_camera(
+        self
+    ) -> Camera:
+        return self.camera
 
     def set_color(
-        self: Self,
+        self,
         red: int,
         green: int,
         blue: int
@@ -87,13 +89,13 @@ class World(object):
         self.bgcolor = (red, green, blue)
 
     def set_target_fps(
-        self: Self,
-        fpslimit: float=0
+        self,
+        fpslimit: Optional[int] = None
     ) -> None:
         self.fpslimit = fpslimit
 
     def resize_world(
-        self: Self,
+        self,
         width: int,
         height: int
     ) -> None:
@@ -102,15 +104,15 @@ class World(object):
         self.screen = pygame.transform.scale(self.screen, (width, height))
 
     @property
-    def actual_fps(self: Self) -> float:
+    def actual_fps(self) -> float:
         return self.__clock.get_fps()
 
     @property
-    def delta_time(self: Self) -> float:
+    def delta_time(self) -> float:
         return (pygame.time.get_ticks() - self.__lasttick) / 1000
 
     def run(
-        self: Self
+        self
     ) -> None:
         status = True
         while (status):
@@ -123,8 +125,8 @@ class World(object):
             for i in pygame.event.get():
                 if i.type == pygame.QUIT:
                     status = False
-            
-            self.__lasttick=pygame.time.get_ticks()
+
+            self.__lasttick = pygame.time.get_ticks()
             if self.fpslimit:
                 self.__clock.tick(self.fpslimit)
         pygame.quit()
