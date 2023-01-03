@@ -8,8 +8,8 @@ REPONAME = tatiana
 
 all: check build
 check:
-	flake8 --extend-ignore F401 ./tatiana/
-	mypy ./tatiana/
+	flake8 --extend-ignore F401 .
+	mypy .
 
 build:
 	$(PYTHON) -m build
