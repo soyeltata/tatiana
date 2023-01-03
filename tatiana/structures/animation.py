@@ -1,6 +1,7 @@
 from dataclasses import dataclass as component
 from time import time
-from typing import Any
+from typing import Callable
+from .. import Entity
 
 
 @component
@@ -8,7 +9,7 @@ class AnimationController:
     begin: int
     end:   int
     speed: float
-    condition: Any
+    condition: Callable[[Entity], bool]
     current: int
     timestamp: float
     preference: int
@@ -29,7 +30,7 @@ class AnimationController:
 
     def set_condition(
         self,
-        condition: Any
+        condition: Callable[[Entity], bool]
     ) -> None:
         self.condition = condition
 
@@ -41,8 +42,8 @@ class AnimationController:
 
     def AnimCondition(
         self,
-        condition: Any
-    ) -> Any:
+        condition: Callable[[Entity], bool]
+    ) -> Callable[[Entity], bool]:
         self.condition = condition
         return condition
 

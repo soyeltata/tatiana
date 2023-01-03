@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple, Callable, Optional
+from typing import Dict, List, Tuple, Callable, Optional
 from pygame.surface import Surface
 import pygame
 from . import entity
@@ -54,7 +54,7 @@ class World(object):
     def add_system(
         self,
         name: str,
-        s: Any
+        s: Callable[[Surface, Self], None]
     ) -> None:
         self.systems[name] = s
 
