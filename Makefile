@@ -2,11 +2,15 @@ PYTHON   = python3
 PIP      = pip3
 REPONAME = tatiana
 
-.PHONY: all build install upload clean
+.PHONY: all check build install upload clean
 .DEFAULT: all
 
 
-all: build
+all: check build
+check:
+	flake8 --extend-ignore F401 ./tatiana/
+	mypy ./tatiana/
+
 build:
 	$(PYTHON) -m build
 
