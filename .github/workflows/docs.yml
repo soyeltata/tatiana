@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install -r ./requirements.txt
+      - run: pip install pdoc
       - run: make docs
 
       - uses: actions/upload-pages-artifact@v1
