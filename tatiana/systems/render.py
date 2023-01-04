@@ -1,11 +1,10 @@
 import pygame
 from ..components import SpriteComponent, TransformComponent
-from ..world import World
 
 
 def RenderSystem(
     screen: pygame.surface.Surface,
-    world: World
+    world
 ) -> None:
     screen.fill(world.bgcolor)
     cmr = world.get_camera()

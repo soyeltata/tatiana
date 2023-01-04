@@ -1,10 +1,10 @@
 from typing import Dict, List, Tuple, Callable, Optional
 from pygame.surface import Surface
 import pygame
-from . import entity
-from . import Self
-from .systems import RenderSystem
+from .entity import Entity
 from .entities import Camera
+from .typenames import Self
+from .systems import RenderSystem
 
 
 class World(object):
@@ -13,7 +13,7 @@ class World(object):
     height: int
     bgcolor: Tuple[int, int, int]
     camera: Camera
-    entities: Dict[str, entity.Entity]
+    entities: Dict[str, Entity]
     systems: Dict[str, Callable[[Surface, Self], None]]
     fpslimit: Optional[int]
     __clock: pygame.time.Clock
@@ -47,7 +47,7 @@ class World(object):
 
     def add_entity(
         self,
-        e: entity.Entity
+        e: Entity
     ) -> None:
         self.entities[e.name] = e
 
@@ -67,12 +67,12 @@ class World(object):
     def get_entity(
         self,
         n: str
-    ) -> entity.Entity:
+    ) -> Entity:
         return self.entities[n]
 
     def get_entities(
         self
-    ) -> List[entity.Entity]:
+    ) -> List[Entity]:
         return list(self.entities.values())
 
     def get_camera(
