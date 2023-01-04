@@ -11,8 +11,8 @@ install-deps:
 	$(PIP) install -r ./requirements.txt
 
 check:
-	flake8 --extend-ignore F401 .
-	mypy .
+	flake8 --extend-ignore F401 ./tatiana/
+	mypy ./tatiana/
 
 build:
 	$(PYTHON) -m build
