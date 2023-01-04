@@ -18,6 +18,7 @@ jobs:
           python-version: '3.11'
 
       - run: pip install pdoc
+      - run: pip install pygame --pre
       - run: make docs
 
       - uses: actions/upload-pages-artifact@v1
