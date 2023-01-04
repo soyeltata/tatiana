@@ -13,7 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.10"]
+        # eliminada la versión v3.11 por ahora
 
     steps:
     - uses: actions/checkout@v3
