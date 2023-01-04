@@ -4,7 +4,7 @@ from ..world import World
 
 
 def RenderSystem(
-    screen: pygame.Surface,
+    screen: pygame.surface.Surface,
     world: World
 ) -> None:
     screen.fill(world.bgcolor)
