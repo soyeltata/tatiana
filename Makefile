@@ -18,7 +18,7 @@ build:
 	$(PYTHON) -m build
 
 docs:
-	pdoc ./tatiana/ -o ./docs/ --math --logo "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png"
+	pdoc ./tatiana/ -o ./docs/ --math --logo "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" --logo-link "https://github.com/soyeltata/tatiana"
 
 clean:
 	rm -r dist/
