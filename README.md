@@ -1,4 +1,4 @@
-<div align="center"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" height="250" width="250">
+<div align="center"><a href="https://soyeltata.github.io/tatiana/"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" height="250" width="250"></a>
 <hr width=550>
 <i>Un pobre intento de hacer un pequeño motor de videojuegos utilizando Python (≥ 3.10) y pygame</i>
 </div>
