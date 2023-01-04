@@ -1,4 +1,4 @@
-<div align="center"><img src="./assets/tatiana-logo.png" height="250" width="250">
+<div align="center"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" height="250" width="250">
 <hr width=550>
 <i>Un pobre intento de hacer un pequeño motor de videojuegos utilizando Python (≥ 3.10) y pygame</i>
 </div>
@@ -140,7 +140,7 @@ Por ello, a continuación se muestra el plan de programación que se tiene pensa
 
 ## demostración de las capacidades de **Tatiana**
 En general, es posible resumir el estado actual del proyecto con la siguiente imagen:
-<div align="center"><img src="./assets/demo-n1.gif"></div>
+<div align="center"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/demo-n1.gif"></div>
 
 Y es que en esta pequeña demostración se puede apreciar el manejo de imágenes, animaciones y el límite de **FPS** que es capaz de realizar el motor. Siendo muy poco, ilustra perfectamente el estado del proyecto y el hecho de que aún necesita tiempo de desarrollo.
 
