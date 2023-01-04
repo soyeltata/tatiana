@@ -63,7 +63,7 @@ SPRITE = 'image.png'
 
 player = Entity('mainobj', (0, 0), abspath(SPRITE))
 
-w = World(RESX,RESY,'running')
+w = World(RESX, RESY)
 w.add_entity(player)
 w.set_target_fps(30)
 w.run()
@@ -78,24 +78,25 @@ from tatiana.components import TransformComponent, SpriteComponent
 
 SPEED = 5
 
-def MovementSystem (
+
+def MovementSystem(
     _,
     environment: World
 ) -> None:
     player = environment.get_entity('mainobj')
     position = player.get_component(TransformComponent)
-    camera = environment.get_entity('camera')
+    # camera = environment.get_camera()
 
     try:
         if keyboard.is_pressed('a'):
             position.X -= SPEED
-        
+
         elif keyboard.is_pressed('d'):
             position.X += SPEED
-        
+
         elif keyboard.is_pressed('w'):
             position.Y -= SPEED
-        
+
         elif keyboard.is_pressed('s'):
             position.Y += SPEED
 
@@ -114,7 +115,7 @@ SPRITE = 'image.png'
 
 player = Entity('mainobj', (0, 0), abspath(SPRITE))
 
-w = World(RESX,RESY,'running')
+w = World(RESX, RESY)
 w.add_entity(player)
 w.add_system('movement', MovementSystem)
 w.set_target_fps(30)
@@ -128,7 +129,9 @@ Por ello, a continuación se muestra el plan de programación que se tiene pensa
 - [X] Dibujado de imágenes y sistemas para el escalado, la rotación y la opacidad de las mismas.
 - [X] Animaciones funcionales y sistemas para manejar varias a la vez.
 - [X] Sistemas para la limitación de FPS en la ejecución.
-- [ ] Refactorizar el proyecto según la guía de estilo [PEP 8](https://peps.python.org/pep-0008/).
+- [X] Refactorizar el proyecto según la guía de estilo [PEP 8](https://peps.python.org/pep-0008/).
+- [X] Seguridad de tipos garantizada gracias a la herramienta [mypy](http://mypy-lang.org/).
+- [X] Pequeña galería con ejemplos sencillos del motor.
 - [ ] Escribir la documentación del proyecto mediante la herramienta [pdoc](https://pdoc.dev/).
 - [ ] Movimiento fluido mediante interpolaciones.
 - [ ] Importación de *"atlas"* y *"spritesheets"*.
