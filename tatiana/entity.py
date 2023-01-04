@@ -27,11 +27,11 @@ class Entity:
         *ocomponents
     ) -> None:
         """Constructor de la clase `Entity`, toma un nombre que será asignado
-        a la variable `name` del mismo objeto, una posición que se añadirá a los
-        componentes como un `TransformComponent`, una dirección (opcional) hacia
-        el sprite del dicho objeto que se agregará como un `SpriteComponent` y
-        soporta una colección de componentes como argumentos que se asignarán luego
-        a la propia entidad."""
+        a la variable `name` del mismo objeto, una posición que se añadirá
+        a los componentes como un `TransformComponent`, una dirección
+        (opcional) hacia el sprite del dicho objeto que se agregará como un
+        `SpriteComponent` y soporta una colección de componentes como
+        argumentos que se asignarán luego a la propia entidad."""
         self.name = name
         self.components = {}
         self.properties = {}
@@ -46,8 +46,8 @@ class Entity:
 
     def add_component(self, component: Any) -> None:
         """Función encargada de agregar un componente a la entidad. Añade al
-        diccionario `components` de la clase el componente pasado como argumento
-        teniendo como clave su clase."""
+        diccionario `components` de la clase el componente pasado como
+        argumento teniendo como clave su clase."""
         key = type(component)
         self.components[key] = component
 
@@ -62,32 +62,33 @@ class Entity:
 
     def has_component(self, clazz: Any) -> bool:
         """Función encargada de, a partir de una clase cualquiera pasada como
-        argumento, retornar un valor booleano que represente si existe un componente
-        asociado a esta."""
+        argumento, retornar un valor booleano que represente si existe un
+        componente asociado a esta."""
         return self.get_component(clazz) is not None
 
     def change_sprite(self, path: str) -> None:
-        """Función encargada de, a partir de una ruta determinada como una cadena
-        de texto, cambiar el sprite de la entidad por la imagen a la que apunta
-        la dicha ruta."""
+        """Función encargada de, a partir de una ruta determinada como una
+        cadena de texto, cambiar el sprite de la entidad por la imagen a la
+        que apunta la dicha ruta."""
         if self.has_component(components.SpriteComponent):
             self.components[components.SpriteComponent].change_sprite(1, path)
 
     def set_property(self, name: str, value: Any) -> None:
-        """Función encargada de asignar una propiedad a la entidad, sirviendo como
-        setter para el diccionario `properties` de la clase."""
+        """Función encargada de asignar una propiedad a la entidad, sirviendo
+        como setter para el diccionario `properties` de la clase."""
         self.properties[name] = value
 
-    def get_property(self, name: str) -> None:
-        """Función encargada de retornar una propiedad determinada de la entidad,
-        sirviendo como getter para el diccionario `properties` de la clase."""
+    def get_property(self, name: str) -> Optional[Any]:
+        """Función encargada de retornar una propiedad determinada de la
+        entidad, sirviendo como getter para el diccionario `properties` de
+        la clase."""
         try:
             return self.properties[name]
         except KeyError:
             return None
 
     def has_property(self, name: str) -> bool:
-        """Función encargada de retornar un valor booleano que determine si existe
-        una propiedad asociada al nombre pasado como argumento en el diccionario
-        `properties` de la clase."""
+        """Función encargada de retornar un valor booleano que determine
+        si existe una propiedad asociada al nombre pasado como argumento
+        en el diccionario `properties` de la clase."""
         return self.get_property(name) is not None
