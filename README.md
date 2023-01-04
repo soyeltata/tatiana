@@ -1,4 +1,4 @@
-<div align="center"><img src="./assets/tatiana-logo.png">
+<div align="center"><img src="./assets/tatiana-logo.png" height="250" width="250">
 <hr width=550>
 <i>Un pobre intento de hacer un pequeño motor de videojuegos utilizando Python (≥ 3.10) y pygame</i>
 </div>
