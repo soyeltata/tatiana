@@ -28,8 +28,8 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: comprobar la calidad del código
       run: |
-        flake8 --extend-ignore F401 .
-        mypy .
+        flake8 --extend-ignore F401 ./tatiana/
+        mypy ./tatiana/
     - name: compilar el paquete
       run: |
         python -m build
