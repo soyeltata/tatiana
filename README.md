@@ -1,4 +1,6 @@
-<div align="center"><a href="https://soyeltata.github.io/tatiana/"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" height="250" width="250"></a>
+<div align="center"><a href="https://soyeltata.github.io/tatiana/" target="_blank"><img src="https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" height="250" width="250"></a>
+<hr width=550>
+<strong><a href="https://soyeltata.github.io/tatiana/">sitio web principal</a> • <a href="https://pypi.org/project/tatiana/">página del proyecto</a> • <a href="https://github.com/soyeltata/tatiana">repositorio de código</a></strong>
 <hr width=550>
 <i>Un pobre intento de hacer un pequeño motor de videojuegos utilizando Python (≥ 3.10) y pygame</i>
 </div>
@@ -14,13 +16,22 @@ No obstante y a causa de los importantes avances que ha estado teniendo este pro
 
 
 ## instalación del paquete
-Puede instalar remotamente el paquete **Tatiana** en su entorno local ejecutando el siguiente comando desde su terminal:
+Puede instalar remotamente la versión más reciente del paquete **Tatiana** en su entorno local ejecutando el siguiente comando desde su terminal:
 ```bash
 pip3 install git+https://github.com/soyeltata/tatiana
 ```
 Esto, en el caso de que se encuentre en un entorno **UNIX**, si está bajo una máquina **Windows** habrá de reemplazar `pip3` por `pip`, como se muestra a continuación:
 ```bash
 pip install git+https://github.com/soyeltata/tatiana
+```
+
+Además, a partir de la versión **v0.0.2**, puede instalar **Tatiana** a través de los repositorios oficiales de [PyPI](https://pypi.org/), como se muestra a continuación:
+```bash
+pip3 install tatiana
+```
+De nuevo, si está en una máquina con **Windows**, habrá de reemplazar `pip3` por `pip`:
+```bash
+pip install tatiana
 ```
 
 Sin embargo y en el caso de que quiera instalar **Tatiana** manualmente con el fin de modificar su código fuente o con cualquier otro propósito, habrá de seguir las siguientes instrucciones, no sin antes asegurarse de que tiene instalados los paquetes `git` y `make`:
@@ -41,6 +52,10 @@ Sin embargo y en el caso de que quiera instalar **Tatiana** manualmente con el f
    Los binarios se encontrarán en el directorio `dist/` que se acabará de crear.
    Para configurar correctamente y adaptar la compilación a su dispositivo con precisión, visite y lea el archivo `Makefile` que encontrará en la carpeta en la que se sitúa en el momento.
    En el caso de que no posea `make` instalado en su dispositivo, puede instalar **Tatiana** manualmente con el siguiente comando:
+   ```bash
+   pip3 install -e .
+   ```
+   Reitero en que, si está en un sistema **Windows**, habrá de cambiar `pip3` por `pip`, como se muestra más abajo:
    ```bash
    pip install -e .
    ```
@@ -122,6 +137,9 @@ w.set_target_fps(30)
 w.run()
 ```
 
+#### más ejemplos varios
+Además, contamos con una pequeña galería de ejemplos varios llevados a cabo con el motor **Tatiana**, puedes visitarla en el directorio [`examples`](https://github.com/soyeltata/tatiana/tree/main/examples), y siéntete libre de añadir los tuyos propios.
+
 ## características por implementar
 Aún habiéndose implementado varias características dentro del motor **Tatiana**, el desarrollo de este apenas comienza, por lo que la mayoría de las que pensamos como posibles o que nos gustaría ver implementadas aún no lo están.
 Por ello, a continuación se muestra el plan de programación que se tiene pensado para el proyecto (aunque sin fecha alguna, puede que no se acaben cumpliendo nuestras intenciones):
@@ -132,11 +150,12 @@ Por ello, a continuación se muestra el plan de programación que se tiene pensa
 - [X] Refactorizar el proyecto según la guía de estilo [PEP 8](https://peps.python.org/pep-0008/).
 - [X] Seguridad de tipos garantizada gracias a la herramienta [mypy](http://mypy-lang.org/).
 - [X] Pequeña galería con ejemplos sencillos del motor.
-- [ ] Escribir la documentación del proyecto mediante la herramienta [pdoc](https://pdoc.dev/).
+- [X] Escribir la documentación del proyecto mediante la herramienta [pdoc](https://pdoc.dev/).
 - [ ] Movimiento fluido mediante interpolaciones.
 - [ ] Importación de *"atlas"* y *"spritesheets"*.
 - [ ] Físicas realistas mediante el paquete [Pymunk](http://www.pymunk.org/).
 - [ ] Clases base para crear rectángulos, círculos, triángulos, texto...
+- [ ] Una interfaz de línea de comandos para crear y manejar los proyectos.
 
 ## demostración de las capacidades de **Tatiana**
 En general, es posible resumir el estado actual del proyecto con la siguiente imagen:
