@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tatiana"
-version = "0.0.2"
+version = "0.0.2.1"
 authors = [
   { name="Alonzo Ximénez Qui", email="alonzo.ximenez.qui@gmail.com" },
 ]
@@ -14,12 +14,12 @@ requires-python = ">=3.10"
 dependencies = ["pygame"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GPL-3.0 license",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/soyeltata/tatiana"
+"Homepage" = "https://soyeltata.github.io/tatiana/"
 "Bug Tracker" = "https://github.com/soyeltata/tatiana/issues"
 
 [tool.setuptools]
