@@ -28,7 +28,7 @@ class AnimationController:
         como argumentos cuatro de las siete propiedades de la clase
         y se las asigna (el inicio de la animación, el final, la
         velocidad y la preferencia que tiene esa animación con
-        respecto a las demás), además, también inicializa la imágen
+        respecto a las demás), además, también inicializa la imagen
         actual y el `timestamp`, esta última con el propósito de
         que pueda fluir la animación."""
         self.begin = begin-1

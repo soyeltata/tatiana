@@ -22,7 +22,7 @@ docs:
 	     -o ./docs/ \
 	     --math \
 	     --logo "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" \
-	     --logo-link "https://github.com/soyeltata/tatiana" \
+	     --logo-link "https://soyeltata.github.io/tatiana/" \
 	     --favicon "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-favicon.png"
 	rm ./docs/.gitkeep
 
