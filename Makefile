@@ -24,6 +24,7 @@ docs:
 	     --logo "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-logo.png" \
 	     --logo-link "https://github.com/soyeltata/tatiana" \
 	     --favicon "https://github.com/soyeltata/tatiana/raw/main/assets/tatiana-favicon.png"
+	rm ./docs/.gitkeep
 
 clean:
 	rm -r dist/
